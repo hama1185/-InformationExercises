@@ -69,6 +69,11 @@ void sumB(){
         }
         n++;
     }
+    current = head;
+    for(i=0;i<n;i++){
+        printf("%f\n", current -> data);
+        current = current -> next;
+    }
     //昇順にソート
     for(i = 0; i < n - 1; i++){
         current = start;
