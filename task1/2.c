@@ -4,44 +4,48 @@
 #include <string.h>
 
 struct human{
-    char firstName[100];
-    char lastName[100];
-    struct human *next;
-};
-
-struct list{
-    double data;
-    struct list *next;
+    char* firstName;
+    char* lastName;
+    struct human* next;
 };
 
 void main(){
-    //単純挿入ソート
-    struct list* head;
-    struct list* laststart;
-    struct list* start;
-    struct list* lastcurrent;
-    struct list* current;
-    struct list* p;
-    double data;
+    struct human* head;
+    struct human* laststart;
+    struct human* start;
+    struct human* lastcurrent;
+    struct human* current;
+    struct human* p;
+    char firstname[256];
+    char lastname[256];
     int n = 0;
     int minNum;
     int i,j;
-    double min;
+    
     //データ入力および線形リストの作成
-    while(scanf("%lf", &data) != EOF){
+    printf("Enter firstname to lastname in order\n");
+    while(scanf("%s", firstname) != EOF){
+        if(scanf("%s", lastname) == EOF){
+            break;
+        }
         if(n == 0){
-            p = (struct list*)malloc(sizeof(struct list));
-            p -> data = data;
+            p = (struct human*)malloc(sizeof(struct human));
+            p -> firstName = firstname;
+            p -> lastName = lastname;
+            p -> next = NULL;
             head = p;
             start = head;
-            laststart = start;
         }
         else{
-            p -> next = (struct list*)malloc(sizeof(struct list));
+            p -> next = (struct human*)malloc(sizeof(struct human));
             p = p -> next;
-            p -> data = data;
+            p -> firstName = firstname;
+            p -> lastName = lastname;
+            p -> next = NULL;
         }
         n++;
+        printf("%s\n", p -> lastName);
+        printf("%s\n", p -> firstName);
     }
     // current = head;
     // while(current != NULL){
@@ -91,7 +95,8 @@ void main(){
 
     current = head;
     while(current != NULL){
-        printf("%f\n", current -> data);
+        printf("%s\n", current -> lastName);
+        printf("%s\n", current -> firstName);
         current = current -> next;
     }
     free(p);

@@ -4,7 +4,7 @@
 
 struct list{
     double data;
-    struct list *next;
+    struct list* next;
 };
 
 void sumA();
