@@ -4,8 +4,8 @@
 #include <string.h>
 
 struct human{
-    char* firstName;
-    char* lastName;
+    char firstName[256];
+    char lastName[256];
     struct human* next;
 };
 
@@ -34,7 +34,6 @@ void main(){
         else{
             p -> next = (struct human*)malloc(sizeof(struct human));
             p = p -> next;
-            printf("a");
             scanf("%s", p -> firstName);
             scanf("%s", p -> lastName);
             p -> next = NULL;
