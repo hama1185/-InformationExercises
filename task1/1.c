@@ -53,11 +53,13 @@ void sumB(){
     int minNum;
     int i,j;
     double min;
+    double sum = 0;
     //データ入力および線形リストの作成
     while(scanf("%lf", &data) != EOF){
         if(n == 0){
             p = (struct list*)malloc(sizeof(struct list));
             p -> data = data;
+            p -> next = NULL;
             head = p;
             start = head;
             laststart = start;
@@ -66,27 +68,23 @@ void sumB(){
             p -> next = (struct list*)malloc(sizeof(struct list));
             p = p -> next;
             p -> data = data;
+            p -> next = NULL;
         }
         n++;
     }
-    current = head;
-    for(i=0;i<n;i++){
-        printf("%f\n", current -> data);
-        current = current -> next;
-    }
-    //昇順にソート
+    
+    // 昇順にソート
     for(i = 0; i < n - 1; i++){
         current = start;
         min = INFINITY;
         //最小値の探索
         for(j = i; j < n; j++){
-            if(fabs(current -> data) < min){
+            if(fabs(current -> data) < fabs(min)){
                 min = current -> data;
                 minNum = j;
             }
             current = current -> next;
         }
-        printf("min :%f\n", min);
         current = head;
         lastcurrent = current;
         current = head;
@@ -114,15 +112,38 @@ void sumB(){
             start = current -> next;
         }
     }
-
     current = head;
     while(current != NULL){
-        printf("%f\n", current -> data);
+
+        printf("%f\n", sum += current -> data);
         current = current -> next;
     }
+
     free(p);
     free(head);
     free(laststart);
     free(current);
     free(lastcurrent);
 }
+// データセット
+// 1.0e16
+// -1.0e2
+// 23
+// -6.4
+// 3.6e2
+// -0.01
+// 8.0
+// -70
+// 5.0e3
+// 1.2e-2
+// -3.0e3
+// 46
+// -1.7e3
+// 10
+// -5.0e2
+// 7.0
+// -2.0e-3
+// 0.3
+// -30
+// 3.1
+// -1.0e16
