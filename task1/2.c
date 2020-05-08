@@ -15,7 +15,10 @@ void main(){
     struct human* start;
     struct human* lastcurrent;
     struct human* current;
-    struct human* p;
+    struct human* end;
+    struct human* lastend;
+    struct human* copyList;
+    
     int n = 0;
     int minNum;
     int i,j,judge;
@@ -24,33 +27,82 @@ void main(){
     printf("Enter firstname to lastname in order\n");
     do{
         if(n == 0){
-            p = (struct human*)malloc(sizeof(struct human));
-            scanf("%s", p -> firstName);
-            scanf("%s", p -> lastName);
-            p -> next = NULL;
-            head = p;
+            end = (struct human*)malloc(sizeof(struct human));
+            scanf("%s", end -> firstName);
+            scanf("%s", end -> lastName);
+            end -> next = NULL;
+            head = end;
             start = head;
+            laststart = head;
+            current = head;
+            lastcurrent = head;
+            lastend = head;
         }
         else{
-            p -> next = (struct human*)malloc(sizeof(struct human));
-            p = p -> next;
-            scanf("%s", p -> firstName);
-            scanf("%s", p -> lastName);
-            p -> next = NULL;
+            end -> next = (struct human*)malloc(sizeof(struct human));
+            lastend = end;
+            end = end -> next;
+            scanf("%s", end -> firstName);
+            scanf("%s", end -> lastName);
+            end -> next = NULL;
+            //lastnameでソート
+            current = head;
+            lastcurrent = head;
+            while(current != NULL){
+                if(strcmp(current -> lastName, end -> lastName) > 0){
+                    if(current == head){
+                        end -> next = head;
+                        head = end;
+                    }
+                    else{
+                        lastcurrent -> next = end;
+                        end -> next = current;
+                    }
+                    lastend -> next = NULL;
+                    end = lastend;
+                }
+                lastcurrent = current;
+                current =  current -> next;
+            }       
         }
         n++;
-        printf("%s\n", p -> lastName);
-        printf("%s\n", p -> firstName);
+        printf("%s\n", end -> lastName);
+        printf("%s\n", end -> firstName);
 
         printf("Enter 0 when you want to quit\n");
         scanf("%d", &judge);
     }while(judge != 0);
-    
-    // current = head;
-    // while(current != NULL){
-    //     printf("%f\n", current -> data);
-    //     current = current -> next;
-    // }
+
+    current = head;
+    n = 0;
+    //出力と同時にデータを別の線形リストに複写
+    printf("lastname sort\n");
+    while(current != NULL){
+        printf("%s\n", current -> lastName);
+        printf("%s\n", current -> firstName);
+        if(n == 0){
+            copyList = (struct human*)malloc(sizeof(struct human));
+            *copyList -> firstName = (current -> firstName)[0];
+            *copyList -> lastName = (current -> lastName)[0];
+            copyList -> next = NULL;
+            head = copyList;
+        }
+        else{
+            copyList -> next = (struct human*)malloc(sizeof(struct human));
+            copyList = copyList -> next;
+            *copyList -> firstName = (current -> firstName)[0];
+            *copyList -> lastName = (current -> lastName)[0];
+            copyList -> next = NULL;
+        }
+        current = current -> next;
+    }
+    current = head;
+    printf("copy list\n");
+    while(current != NULL){
+        printf("%s\n", current -> lastName);
+        printf("%s\n", current -> firstName);
+        current = current -> next;
+    }
     //昇順にソート
     // for(i = 0; i < n - 1; i++){
     //     current = start;
@@ -92,13 +144,9 @@ void main(){
     //     }
     // }
 
-    current = head;
-    while(current != NULL){
-        printf("%s\n", current -> lastName);
-        printf("%s\n", current -> firstName);
-        current = current -> next;
-    }
-    free(p);
+    
+    free(end);
+    free(lastend);
     free(head);
     free(laststart);
     free(current);
