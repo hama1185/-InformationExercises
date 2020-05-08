@@ -99,6 +99,7 @@ void main(){
             copyList -> next = NULL;
         }
         current = current -> next;
+        n++;
     }
     current = head;
     printf("copy list\n");
