@@ -82,16 +82,20 @@ void main(){
         printf("%s\n", current -> firstName);
         if(n == 0){
             copyList = (struct human*)malloc(sizeof(struct human));
-            *copyList -> firstName = (current -> firstName)[0];
-            *copyList -> lastName = (current -> lastName)[0];
+            strcpy(copyList -> firstName, current -> firstName);
+            strcpy(copyList -> lastName, current -> lastName);
+            // *copyList -> firstName = (current -> firstName)[0];
+            // *copyList -> lastName = (current -> lastName)[0];
             copyList -> next = NULL;
             head = copyList;
         }
         else{
             copyList -> next = (struct human*)malloc(sizeof(struct human));
             copyList = copyList -> next;
-            *copyList -> firstName = (current -> firstName)[0];
-            *copyList -> lastName = (current -> lastName)[0];
+            // *copyList -> firstName = (current -> firstName)[0];
+            // *copyList -> lastName = (current -> lastName)[0];
+            strcpy(copyList -> firstName, current -> firstName);
+            strcpy(copyList -> lastName, current -> lastName);
             copyList -> next = NULL;
         }
         current = current -> next;
