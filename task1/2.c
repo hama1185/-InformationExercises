@@ -4,8 +4,8 @@
 #include <string.h>
 
 struct human{
-    char* firstName;
-    char* lastName;
+    char firstName[256];
+    char lastName[256];
     struct human* next;
 };
 
@@ -16,22 +16,17 @@ void main(){
     struct human* lastcurrent;
     struct human* current;
     struct human* p;
-    char firstname[256];
-    char lastname[256];
     int n = 0;
     int minNum;
-    int i,j;
+    int i,j,judge;
     
     //データ入力および線形リストの作成
     printf("Enter firstname to lastname in order\n");
-    while(scanf("%s", firstname) != EOF){
-        if(scanf("%s", lastname) == EOF){
-            break;
-        }
+    do{
         if(n == 0){
             p = (struct human*)malloc(sizeof(struct human));
-            p -> firstName = firstname;
-            p -> lastName = lastname;
+            scanf("%s", p -> firstName);
+            scanf("%s", p -> lastName);
             p -> next = NULL;
             head = p;
             start = head;
@@ -39,14 +34,18 @@ void main(){
         else{
             p -> next = (struct human*)malloc(sizeof(struct human));
             p = p -> next;
-            p -> firstName = firstname;
-            p -> lastName = lastname;
+            scanf("%s", p -> firstName);
+            scanf("%s", p -> lastName);
             p -> next = NULL;
         }
         n++;
         printf("%s\n", p -> lastName);
         printf("%s\n", p -> firstName);
-    }
+
+        printf("Enter 0 when you want to quit\n");
+        scanf("%d", &judge);
+    }while(judge != 0);
+    
     // current = head;
     // while(current != NULL){
     //     printf("%f\n", current -> data);
