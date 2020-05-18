@@ -22,13 +22,17 @@ void main(){
     int n = 0;
     int minNum;
     int i,j,judge;
+
+    char min[256];
     
     //データ入力および線形リストの作成
     printf("Enter firstname to lastname in order\n");
     do{
         if(n == 0){
             end = (struct human*)malloc(sizeof(struct human));
+            printf("firstname\n");
             scanf("%s", end -> firstName);
+            printf("lastname\n");
             scanf("%s", end -> lastName);
             end -> next = NULL;
             head = end;
@@ -42,7 +46,9 @@ void main(){
             end -> next = (struct human*)malloc(sizeof(struct human));
             lastend = end;
             end = end -> next;
+            printf("firstname\n");
             scanf("%s", end -> firstName);
+            printf("lastname\n");
             scanf("%s", end -> lastName);
             end -> next = NULL;
             //lastnameでソート
@@ -66,8 +72,8 @@ void main(){
             }       
         }
         n++;
-        printf("%s\n", end -> lastName);
-        printf("%s\n", end -> firstName);
+        // printf("%s\n", end -> lastName);
+        // printf("%s\n", end -> firstName);
 
         printf("Enter 0 when you want to quit\n");
         scanf("%d", &judge);
@@ -78,22 +84,19 @@ void main(){
     //出力と同時にデータを別の線形リストに複写
     printf("lastname sort\n");
     while(current != NULL){
-        printf("%s\n", current -> lastName);
-        printf("%s\n", current -> firstName);
+        printf("lastname %s ", current -> lastName);
+        printf("fistname %s\n", current -> firstName);
+        printf("\n");
         if(n == 0){
             copyList = (struct human*)malloc(sizeof(struct human));
             strcpy(copyList -> firstName, current -> firstName);
             strcpy(copyList -> lastName, current -> lastName);
-            // *copyList -> firstName = (current -> firstName)[0];
-            // *copyList -> lastName = (current -> lastName)[0];
             copyList -> next = NULL;
             head = copyList;
         }
         else{
             copyList -> next = (struct human*)malloc(sizeof(struct human));
             copyList = copyList -> next;
-            // *copyList -> firstName = (current -> firstName)[0];
-            // *copyList -> lastName = (current -> lastName)[0];
             strcpy(copyList -> firstName, current -> firstName);
             strcpy(copyList -> lastName, current -> lastName);
             copyList -> next = NULL;
@@ -102,58 +105,63 @@ void main(){
         n++;
     }
     current = head;
-    printf("copy list\n");
+    start = head;
+    lastcurrent = head;
+    laststart = head;
+    //firstname順にソート
+    for(i = 0; i < n - 1; i++){
+        current = start;
+        strcpy(min, start -> firstName);
+        //最小値の探索
+        for(j = i; j < n; j++){
+            if(strcmp(min, current -> firstName) > 0){
+                strcpy(min, current -> firstName);
+                minNum = j;
+            }
+            current = current -> next;
+        }
+        
+        current = head;
+        lastcurrent = current;
+        current = head;
+
+        //挿入するためのノードの移動
+        for(j = 0; j < minNum; j++){
+            lastcurrent = current;
+            current = current -> next;
+        }
+
+        //挿入
+        if(current != start){
+            lastcurrent -> next = current -> next;
+            current -> next = start;
+            if(laststart == start){
+                head = current;
+            }
+            else{
+                laststart -> next = current;
+            }
+            laststart = current;
+        }
+        else{
+            laststart = current;
+            start = current -> next;
+        }
+    }
+    current = head;
+    printf("firstname sort\n");
     while(current != NULL){
-        printf("%s\n", current -> lastName);
-        printf("%s\n", current -> firstName);
+        printf("lastname %s ", current -> lastName);
+        printf("firstname %s\n", current -> firstName);
+        printf("\n");
         current = current -> next;
     }
-    //昇順にソート
-    // for(i = 0; i < n - 1; i++){
-    //     current = start;
-    //     min = INFINITY;
-    //     //最小値の探索
-    //     for(j = i; j < n; j++){
-    //         if(fabs(current -> data) < min){
-    //             min = current -> data;
-    //             minNum = j;
-    //         }
-    //         current = current -> next;
-    //     }
-    //     printf("min :%f\n", min);
-    //     current = head;
-    //     lastcurrent = current;
-    //     current = head;
-
-    //     //挿入するためのノードの移動
-    //     for(j = 0; j < minNum; j++){
-    //         lastcurrent = current;
-    //         current = current -> next;
-    //     }
-
-    //     //挿入
-    //     if(current != start){
-    //         lastcurrent -> next = current -> next;
-    //         current -> next = start;
-    //         if(laststart == start){
-    //             head = current;
-    //         }
-    //         else{
-    //             laststart -> next = current;
-    //         }
-    //         laststart = current;
-    //     }
-    //     else{
-    //         laststart = current;
-    //         start = current -> next;
-    //     }
-    // }
-
-    
     free(end);
     free(lastend);
     free(head);
     free(laststart);
     free(current);
     free(lastcurrent);
+    free(start);
+    free(copyList);
 }

@@ -12,7 +12,8 @@ void sumB();
 
 //入力するデータはデータセットの例と同じものを使用
 void main(){
-    // sumA();
+
+    sumA();
     sumB();
 }
 
@@ -21,7 +22,7 @@ void sumA(){
     int n;
     int i;
     double sum = 0;
-
+    printf("function a\n");
     printf("How many data:\n");
     scanf("%d", &n);
 
@@ -36,8 +37,9 @@ void sumA(){
         sum += p[i];
         printf("%f\n", sum);
     }
-    printf("sum : %f", sum);
+    printf("A is sum : %f", sum);
     free(p);
+    printf("\n");
 }
 
 void sumB(){
@@ -55,6 +57,8 @@ void sumB(){
     double min;
     double sum = 0;
     //データ入力および線形リストの作成
+    printf("function b\n");
+    printf("if finish input data,you input ctrl+z\n");
     while(scanf("%lf", &data) != EOF){
         if(n == 0){
             p = (struct list*)malloc(sizeof(struct list));
@@ -118,7 +122,7 @@ void sumB(){
         printf("%f\n", sum += current -> data);
         current = current -> next;
     }
-
+    printf("B is sum : %f", sum);
     free(p);
     free(head);
     free(laststart);
