@@ -27,7 +27,6 @@ void main(){
     printf("input your formula\n");
     scanf("%s", inputFormula);
     for(i = 0;i < strlen(inputFormula); i++){
-        printf("for %c\n", inputFormula[i]);
         if(i == 0){
             plist = initList(inputFormula[i]);
         }
@@ -35,21 +34,15 @@ void main(){
             while((plist -> head != NULL)&&
             (returnStackPriority(plist) != 4)&&
             (returnInputCharPriority(inputFormula[i]) <= returnStackPriority(plist))){
-                printf("while pop start\n");
                 pop(plist);
-                printf("while pop end\n");
             }
             if(returnInputCharPriority(inputFormula[i]) == 1){
                 //出力せずにポップ
-                printf("if pop start\n");
                 pop(plist);
-                printf("if pop end\n");
             }
             else{
                 //プッシュ
-                printf("push start\n");
                 push(plist, inputFormula[i]);
-                printf("push end\n");
             }
         }
     }
@@ -60,8 +53,6 @@ void main(){
 
 struct node* initNode(char data){
     struct node* p = NULL;
-    printf("init node start\n");
-    printf("p data %c\n",data);
     p = (struct node*)malloc(sizeof(struct node*));
     if(p == NULL){
         printf("init not found\n");
@@ -81,11 +72,9 @@ struct list* initList(char data){
 
 void push(struct list* plist, char data){
     struct node* pNode = NULL;
-    printf("func push start\n");
     if(plist -> head == NULL){
         plist -> head = initNode(data);
         pNode = plist -> head;
-        printf("push is %c\n",pNode->data);
     }
     else{
         pNode = plist -> head;
@@ -93,7 +82,6 @@ void push(struct list* plist, char data){
             pNode = pNode -> next;
         }
         pNode ->next = initNode(data);//なんかうまくいかない
-        printf("push is %c\n",pNode->next->data);
     }
 }
 
@@ -110,7 +98,6 @@ void pop(struct list* plist){
     if(pNode == plist -> head){
         plist -> head = NULL;
     }
-    printf("pop is %c\n",pNode->data);
     if((pNode->data != '(') && (pNode->data != ')')){
         printf("%c",pNode->data);
     }
