@@ -60,9 +60,14 @@ void main(){
 
 struct node* initNode(char data){
     struct node* p = NULL;
+    printf("init node start\n");
+    printf("p data %c\n",data);
     p = (struct node*)malloc(sizeof(struct node*));
+    if(p == NULL){
+        printf("init not found\n");
+    }
     p -> data = data;
-    p -> priority = returnInputCharPriority(data);
+    p -> priority = returnInputCharPriority(p-> data);
     p -> next = NULL;
     return p;
 }
@@ -76,8 +81,10 @@ struct list* initList(char data){
 
 void push(struct list* plist, char data){
     struct node* pNode = NULL;
+    printf("func push start\n");
     if(plist -> head == NULL){
         plist -> head = initNode(data);
+        pNode = plist -> head;
         printf("push is %c\n",pNode->data);
     }
     else{
@@ -85,7 +92,7 @@ void push(struct list* plist, char data){
         while(pNode -> next != NULL){
             pNode = pNode -> next;
         }
-        pNode ->next = initNode(data);
+        pNode ->next = initNode(data);//なんかうまくいかない
         printf("push is %c\n",pNode->next->data);
     }
 }
