@@ -53,7 +53,7 @@ void main(){
 
 struct node* initNode(char data){
     struct node* p = NULL;
-    p = (struct node*)malloc(sizeof(struct node*));
+    p = (struct node*)malloc(sizeof(struct node));
     if(p == NULL){
         printf("init not found\n");
     }
@@ -65,7 +65,7 @@ struct node* initNode(char data){
 
 struct list* initList(char data){
     struct list* plist = NULL;
-    plist = (struct list*)malloc(sizeof(struct list*));
+    plist = (struct list*)malloc(sizeof(struct list));
     plist -> head = initNode(data);
     return plist;
 }
