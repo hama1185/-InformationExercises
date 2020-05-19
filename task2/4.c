@@ -4,7 +4,6 @@
 
 struct branch{
     double data;
-    int flag;
     struct branch* left;
     struct branch* right;
 };
@@ -13,17 +12,18 @@ struct tree{
     struct branch* head;
 };
 
+double sum = 0;
+
 struct tree* initTree(double data);
 struct branch* initBranch(double data);
 void addBranch(struct tree* ptree, double data);
-double returnSumsElement(struct tree* ptree);
+void inOrderSum(struct branch* pbranch);
 
 void main(){
     struct tree* ptree = NULL;
     int i = 0;
     int n = 0;
     double data;
-    double sum = 0;
     double element;
     printf("if finish input data,you input ctrl+z\n");
     while(scanf("%lf", &data) != EOF){
@@ -35,13 +35,10 @@ void main(){
         }
         n++;
     }
-    printf("make tree");
     //計算していく
-    for(i = 0;i < n; i++){
-        element = returnSumsElement(ptree);
-        sum += element;
-        printf("%f\n", sum);
-    }
+    inOrderSum(ptree->head);
+    printf("sum : %f",sum);
+
 }
 
 struct branch* initBranch(double data){
@@ -51,7 +48,6 @@ struct branch* initBranch(double data){
         printf("init not found\n");
     }
     p -> data = data;
-    p -> flag = 0;//計算済みか判断するflag
     p -> right = NULL;
     p -> left = NULL;
     return p;
@@ -90,25 +86,17 @@ void addBranch(struct tree* ptree, double data){
     }
 }
 
-double returnSumsElement(struct tree* ptree){
-    double element;
-    struct branch* pbranch = ptree -> head;
-    while(1){
-        if((pbranch -> left != NULL) && (pbranch -> left -> flag == 0)){
-            pbranch = pbranch -> left;
-        }
-        else if((pbranch -> left -> flag == 1) && (pbranch -> flag == 1) && (pbranch -> right != NULL)){
-            pbranch = pbranch -> right;
-        }
-        else{
-            element = pbranch -> data;
-            printf("%f\n", pbranch -> data);
-            pbranch -> flag = 1;
-            break;
-        }
+void inOrderSum(struct branch* pbranch){
+    if(pbranch == NULL){
+        return;
     }
-    return element;
+    inOrderSum(pbranch->left);
+    sum += pbranch -> data;
+    printf("%f : value %f\n",pbranch->data, sum);
+    inOrderSum(pbranch->right);
+    return;
 }
+
 // データセット
 // 1.0e16
 // -1.0e2
