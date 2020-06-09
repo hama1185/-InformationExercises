@@ -1,0 +1,25 @@
+<html>
+ <head>
+  <title>1週目(4)</title>
+  <!-- <script type="text/javascript">
+    
+  </script> -->
+ </head>
+ <body>
+    <img src="img1.png" name="myImg1" width="640" height="480" onclick="change_size()">
+  <script type="text/javascript">
+    var flag = true;//グローバル
+    function change_size(){
+        if(flag){
+            document.images["myImg1"].width /= 2;
+            document.images["myImg1"].height /= 2;
+        }
+        else{
+            document.images["myImg1"].width *= 2;
+            document.images["myImg1"].height *= 2;
+        }
+        flag = !flag;
+    }
+  </script>
+ </body>
+</html>

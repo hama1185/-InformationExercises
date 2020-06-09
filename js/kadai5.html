@@ -1,0 +1,37 @@
+<html>
+ <head>
+  <title>1週目(4)</title>
+  <!-- <script type="text/javascript">
+    
+  </script> -->
+ </head>
+ <body>
+    <input type="button" value="スライドショー開始" onclick="on_button_start()">
+    <input type="button" value="スライドショー終了" onclick="on_button_end()">
+    <img src="img1.png" name="myImg" width="640" height="480">
+  <script type="text/javascript">
+
+    var type = 1;//グローバル変数で写真の添え字
+    var task;//グローバル変数
+
+    function on_button_start(){
+        task = setInterval(change_image, 5000);
+    }
+
+    function on_button_end(){
+        clearInterval(task);
+    }
+
+    function change_image(){
+        type = getRandomInt(1,3);//1~3の値でランダム
+        document.images["myImg"].src = "img" + type + ".png"; 
+    }
+
+    function getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min)) + min;
+    }
+  </script>
+ </body>
+</html>

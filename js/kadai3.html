@@ -1,0 +1,36 @@
+<html>
+ <head>
+  <title>1週目(3)</title>
+  <script type="text/javascript">
+    var n = prompt("n=",2);
+    var m = prompt("m=",3);
+    function maketable(m, n) {
+        document.write("<center>");
+        document.write("<table border=1 >");
+            document.write("<tr>");
+            document.write("<th>","べき数","</th>");
+            document.write("<th>",n,"</th>");
+            document.write("<th>",m,"</th>");
+            document.write("<th>","sum","</th>");
+            document.write("</tr>");
+        for(var i = 0 ; i < 6 ; i++) {
+            document.write("<tr>");
+            document.write("<th>",i,"</th>"); 
+            document.write("<td>",n**i, "</td>");
+            document.write("<td>",m**i, "</td>");
+            document.write("<td>",n**i + m**i, "</td>");
+            document.write("</tr>");
+            
+        }
+
+        document.write("</table>");
+        document.write("</center>");
+    }
+  </script>
+ </head>
+ <body>
+  <script type="text/javascript">
+    maketable(m,n);  
+  </script>
+ </body>
+</html>
