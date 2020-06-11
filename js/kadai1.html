@@ -1,0 +1,18 @@
+<html>
+ <head>
+  <title>1週目(1)</title>
+  <script type="text/javascript">
+    var start = prompt("開始日を入力してください","2020/4/1");
+    var end = prompt("終了日を入力してください","2020/4/15");
+    start = Date.parse(start);
+    end = Date.parse(end);
+    progress_day = (end - start) / 86400000;
+    window.alert("経過週数：" + parseInt(progress_day / 7) + "週です．");
+  </script>
+ </head>
+ <body>
+  <!-- <script type="text/javascript">
+    
+  </script> -->
+ </body>
+</html>

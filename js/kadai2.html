@@ -1,0 +1,23 @@
+<html>
+ <head>
+  <title>1週目(2)</title>
+  <script type="text/javascript">
+    var base = prompt("入力文字列","電気通信大学の情報学専攻の学生");
+    var key = prompt("キーワード","学");
+    var count = 0;
+    var index = base.indexOf(key);//検索する
+    var change = base;
+    while (index != -1) {
+        change = change.replace(key, "");
+        count = count + 1;
+        index = change.indexOf(key);//検索する
+    }
+    alert("出力：キーワードの個数=" + count + "，新たな文字列=" + change);
+  </script>
+ </head>
+ <body>
+  <!-- <script type="text/javascript">
+    
+  </script> -->
+ </body>
+</html>
