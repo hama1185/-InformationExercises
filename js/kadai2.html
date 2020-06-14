@@ -2,17 +2,18 @@
  <head>
   <title>1週目(2)</title>
   <script type="text/javascript">
-    var base = prompt("入力文字列","電気通信大学の情報学専攻の学生");
-    var key = prompt("キーワード","学");
-    var count = 0;
-    var index = base.indexOf(key);//検索する
-    var change = base;
+    var base = prompt("入力文字列","電気通信大学の情報学専攻の学生");//文字列のベースの入力
+    var key = prompt("キーワード","学");//キーワードの入力
+    var count = 0;//キーワードの出現回数
+    var index = base.indexOf(key);//もしキーワードがなかったら条件式に入らない
+    var change = base;//操作する文字列でベースのコピーをしている
     while (index != -1) {
-        change = change.replace(key, "");
-        count = count + 1;
-        index = change.indexOf(key);//検索する
+        change = change.replace(key, "");//最初に発見したキーワードを消去する(何もない文字列と交換する)
+        count = count + 1;//カウントアップ
+        index = change.indexOf(key);//検索する 発見したらその文字列の出現場所のindexを返す
     }
-    alert("出力：キーワードの個数=" + count + "，新たな文字列=" + change);
+    //出力部分
+    alert("出力：キーワードの個数=" + count + "，新たな文字列=" + change);//検索終了後のchangeはキーワードが何もない状態なので問題の条件を満たしている
   </script>
  </head>
  <body>

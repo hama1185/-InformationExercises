@@ -1,38 +1,38 @@
 <html>
  <head>
   <title>1週目(5)</title>
-  <!-- <script type="text/javascript">
-    
-  </script> -->
  </head>
  <body>
+     <!-- ボタン、画像の宣言 -->
+     <!-- ボタンはクリック時にそれぞれ関数を呼び出す -->
     <input type="button" value="スライドショー開始" onclick="on_button_start()">
     <input type="button" value="スライドショー終了" onclick="on_button_end()">
+    <!-- 画像のサイズを指定 -->
     <img src="img1.png" name="myImg" width="640" height="480">
   <script type="text/javascript">
 
-    var type = 1;//グローバル変数で写真の添え字
-    var task;//グローバル変数
+    var type = 1;//グローバル変数で写真の添え字を示す
+    var task;//グローバル変数でタスクを代入する
 
     function on_button_start(){
-        task = setInterval(change_image, 5000);
+        task = setInterval(change_image, 5000);//5秒に一回change_imageを実行する
     }
 
     function on_button_end(){
-        clearInterval(task);
+        clearInterval(task);//宣言したタスクを停止する
     }
 
     function change_image(){
         type = getRandomType(type);//自分をののぞいたほかの写真でランダム
-        document.images["myImg"].src = "img" + type + ".png"; 
+        document.images["myImg"].src = "img" + type + ".png";//写真の切り替え
     }
 
     function getRandomType(type){
-        num = 0;
-        if(Math.random() < 0.5){
+        num = 0;//現在の写真のindexに足す数
+        if(Math.random() < 0.5){//0~1の間で乱数を発生させ0.5より小さい時は-1
             num = -1;
         }
-        else{
+        else{//大きい時は1にする
             num = 1;
         }
         type = type + num;

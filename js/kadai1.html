@@ -2,12 +2,12 @@
  <head>
   <title>1週目(1)</title>
   <script type="text/javascript">
-    var start = prompt("開始日を入力してください","2020/4/1");
-    var end = prompt("終了日を入力してください","2020/4/15");
-    start = Date.parse(start);
-    end = Date.parse(end);
-    progress_day = (end - start) / 86400000;
-    window.alert("経過週数：" + parseInt(progress_day / 7) + "週です．");
+    var start = prompt("開始日を入力してください","2020/4/1");//入力の形の指定
+    var end = prompt("終了日を入力してください","2020/4/15");//入力の形の指定
+    start = Date.parse(start);//協定世界時からの経過時間をms単位で返す
+    end = Date.parse(end);//協定世界時からの経過時間をms単位で返す
+    progress_day = (end - start) / 86400000;//何日か計算する
+    window.alert("経過週数：" + parseInt(progress_day / 7) + "週です．");//7で割って何週間か計算し出力
   </script>
  </head>
  <body>

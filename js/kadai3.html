@@ -2,27 +2,28 @@
  <head>
   <title>1週目(3)</title>
   <script type="text/javascript">
-    var n = prompt("n=",2);
-    var m = prompt("m=",3);
-    function maketable(m, n) {
+    var n = prompt("n=",2);//入力部
+    var m = prompt("m=",3);//入力部
+    function maketable(m, n){//表を作成する関数
+    //ここではdocument.writeでHTMLの表の構文を出力することで表を作成している
         document.write("<center>");
         document.write("<table border=1 >");
-            document.write("<tr>");
-            document.write("<th>","べき数","</th>");
-            document.write("<th>",n,"</th>");
-            document.write("<th>",m,"</th>");
-            document.write("<th>","sum","</th>");
-            document.write("</tr>");
-        for(var i = 0 ; i < 6 ; i++) {
-            document.write("<tr>");
-            document.write("<th>",i,"</th>"); 
-            document.write("<td>",n**i, "</td>");
-            document.write("<td>",m**i, "</td>");
-            document.write("<td>",n**i + m**i, "</td>");
-            document.write("</tr>");
-            
+        //第一行の見出しの部分
+        document.write("<tr>");
+        document.write("<th>","べき数","</th>");
+        document.write("<th>",n,"</th>");
+        document.write("<th>",m,"</th>");
+        document.write("<th>","sum","</th>");
+        document.write("</tr>");
+        //for文で繰り返すことで行を作成する
+        for(var i = 0 ; i < 6 ; i++){
+          document.write("<tr>");
+          document.write("<th>",i,"</th>");//i乗のための変数
+          document.write("<td>",n**i, "</td>");//計算部分
+          document.write("<td>",m**i, "</td>");//計算部分
+          document.write("<td>",n**i + m**i, "</td>");//計算部分
+          document.write("</tr>");
         }
-
         document.write("</table>");
         document.write("</center>");
     }
@@ -30,7 +31,7 @@
  </head>
  <body>
   <script type="text/javascript">
-    maketable(m,n);  
+    maketable(m,n);//body部分に表の作成を呼び出す
   </script>
  </body>
 </html>
