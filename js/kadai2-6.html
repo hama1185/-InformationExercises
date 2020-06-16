@@ -1,0 +1,38 @@
+<html>
+ <head>
+  <title>2週目(6)</title>
+  <script type="text/javascript">
+    var cookie_element;
+    var element;
+    function set_data(){
+        var presentDay, dd, extime;
+        var user_name = prompt("お名前を入力してください","");
+        var user_hobby = prompt("ご趣味はなんでしょうか","");
+        presentDay = new Date( );
+        dd = presentDay.getDate( );
+        dd=dd+7;
+        presentDay.setDate(dd);
+        extime = presentDay.toGMTString();
+        document.cookie = "name=" + user_name;
+        document.cookie = "hobby=" + user_hobby;
+        document.cookie = ";expires=" + extime;
+    }
+    
+    if(document.cookie == "" || document.cookie == null){
+      set_data();
+    }
+    
+    cookie_element = document.cookie.replace("name=","");
+    cookie_element = cookie_element.replace("; hobby="," ");
+    element = cookie_element.split(" ");
+    
+  </script>
+ </head>
+ <body>
+   
+  <script type="text/javascript">
+    document.write("名前:" + element[0]);
+    document.write("　趣味:" + element[1]);
+  </script>
+ </body>
+</html>
