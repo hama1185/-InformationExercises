@@ -4,26 +4,40 @@
   <script type="text/javascript">
     var cookie_element;
     var element;
-    function set_data(){
-        var presentDay, dd, extime;
-        var user_name = prompt("お名前を入力してください","");
-        var user_hobby = prompt("ご趣味はなんでしょうか","");
-        presentDay = new Date( );
-        dd = presentDay.getDate( );
-        dd=dd+7;
-        presentDay.setDate(dd);
-        extime = presentDay.toGMTString();
-        document.cookie = "name=" + user_name;
-        document.cookie = "hobby=" + user_hobby;
-        document.cookie = ";expires=" + extime;
+    function init_data(){
+      var presentDay, dd, extime;
+      var user_name = prompt("お名前を入力してください","");
+      var user_hobby = prompt("ご趣味はなんでしょうか","");
+      presentDay = new Date( );
+      dd = presentDay.getDate( );
+      dd=dd+7;
+      presentDay.setDate(dd);
+      extime = presentDay.toGMTString();
+      document.cookie = "name=" + user_name;
+      document.cookie = "hobby=" + user_hobby;
+      document.cookie = "count=" + 0;
+      document.cookie = ";expires=" + extime;
+    }
+
+    function change_data(){
+      cookie_element = document.cookie.replace("name=","");
+      cookie_element = cookie_element.replace("; hobby="," ");
+      cookie_element = cookie_element.replace("; count="," ");
+      element = cookie_element.split(" ");
+      var user_hobby = prompt("ご趣味に変更はありますか", element[1]);
+      document.cookie = "hobby=" + user_hobby;
+      document.cookie = "count=" + (parseInt(element[2])+1);
     }
     
     if(document.cookie == "" || document.cookie == null){
-      set_data();
+      init_data();
     }
-    
+    else{
+      change_data();
+    }
     cookie_element = document.cookie.replace("name=","");
     cookie_element = cookie_element.replace("; hobby="," ");
+    cookie_element = cookie_element.replace("; count="," ");
     element = cookie_element.split(" ");
     
   </script>
@@ -31,8 +45,9 @@
  <body>
    
   <script type="text/javascript">
-    document.write("名前:" + element[0]);
+    document.write("　名前:" + element[0]);
     document.write("　趣味:" + element[1]);
+    document.write("　訪問回数:" + element[2]);
   </script>
  </body>
 </html>
