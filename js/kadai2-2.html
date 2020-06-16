@@ -1,0 +1,51 @@
+<html>
+ <head>
+  <title>2週目(2)</title>
+ </head>
+ <body>
+    <!-- 下のテキストの色を変える -->
+    <div id = "text">2秒ごとに色が変わります</div>
+  <script type="text/javascript">
+
+    var type = 1;//グローバル変数で現在の色の添え字を指す
+    var task;//グローバル変数でタスクを代入する
+
+    window.on_load = on_load();//ページの読み込み発生時に処理を実行
+
+    function on_load(){
+        task = setInterval(setcolor, 2000);//2秒に1回setcolorを実行する
+    }
+
+    function setcolor(){
+        type = get_random_type(type);
+        if(type == 1){
+            document.getElementById("text").style.color = "red";//1
+        }
+        if(type == 2){
+            document.getElementById("text").style.color = "blue";//2
+        }
+        if(type == 3){
+            document.getElementById("text").style.color = "yellow";//3
+        }
+    }
+
+    function get_random_type(type){
+        num = 0;//現在の写真のindexに足す数
+        if(Math.random() < 0.5){//0~1の間で乱数を発生させ0.5より小さい時は-1
+            num = -1;
+        }
+        else{//大きい時は1にする
+            num = 1;
+        }
+        type = type + num;
+        if(type  == 0){
+            type = 3;
+        }
+        else if(type  == 4){
+            type = 1;
+        }
+        return type;
+    }
+  </script>
+ </body>
+</html>
