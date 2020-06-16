@@ -1,0 +1,38 @@
+<html>
+    <head>
+    <title>2週目(5)</title>
+      <script type="text/javascript">
+        function scroll_next(){
+            for(var i = 0; i < 500;i++){
+                scrollBy(0,1);//相対位置で下に1ピクセル移動
+            }
+        }
+
+        function scroll_previous(){
+            for(var i = 0; i < 500;i++){
+                scrollBy(0,-1);//相対位置で上に1ピクセル移動
+            }
+        }
+
+        function scroll_top(){
+            var y = window.pageYOffset;//現在のスクロール量
+            for(var i = 0; i < y;i++){
+                scrollBy(0,-1);//相対位置で上に1ピクセル移動
+            }
+        }
+      </script>
+    </head>
+    
+    <body>
+    <h1>クレタ島の風景</h1>
+    写真ごとに上下スクロール<br>
+    <img src="imgGreece1.jpg" name="img1"><br>
+    <input type="button" value="The next photo" onclick="scroll_next()"><br>
+    <img src="imgGreece2.jpg" name="img2"><br>
+    <input type="button" value="The previous photo" onclick="scroll_previous()">
+    <input type="button" value="The next photo" onclick="scroll_next()"><br>
+    <img src="imgGreece3.jpg" name="img3"><br>
+    <input type="button" value="The previous photo" onclick="scroll_previous()"><br>
+    <input type="button" value="Top" onclick="scroll_top()"><br>
+    </body>
+    </html>
