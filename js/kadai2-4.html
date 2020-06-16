@@ -1,0 +1,57 @@
+<html>
+ <head>
+  <title>2週目(4)</title>
+  <script type="text/javascript">
+    var page = new Array(5);//windowを示す配列でグローバル変数
+    
+    function createNewWindow(uri,n){
+        page[n-1] = window.open(uri,"new"+n,"width=400, height=600");//指定したサイズでurlを開く
+    }
+
+    function closeWindow(n){
+        page[n-1].close();//指定したwindowを閉じる
+    }
+  </script>
+ </head>
+ <body>
+     <!-- 表の作成 -->
+    <!-- ボタンのクリックする関数の引数にwindowと対応付けされている数字とurlが割り当てられている -->
+    <center>
+        <table border="1">
+            <tr>
+                <th>name</th>
+                <th>open</th>
+                <th>close</th>
+            </tr>
+            <tr>
+                <td>電通大ホームページ</td>
+                <td><input type="button" value="open" onclick="createNewWindow('https://www.uec.ac.jp/',1)"></td>
+                <td><input type="button" value="close" onclick="closeWindow(1)"></td>
+            </tr>
+            <tr>
+                <td>一関高専ホームページ</td>
+                <td><input type="button" value="open" onclick="createNewWindow('https://www.ichinoseki.ac.jp/',2)"></td>
+                <td><input type="button" value="close" onclick="closeWindow(2)"></td>
+            </tr>
+            <tr>
+                <td>GitHub</td>
+                <td><input type="button" value="open" onclick="createNewWindow('https://github.com/hama1185',3)"></td>
+                <td><input type="button" value="close" onclick="closeWindow(3)"></td>
+            </tr>
+            <tr>
+                <td>Qiita</td>
+                <td><input type="button" value="open" onclick="createNewWindow('https://qiita.com/hama1185',4)"></td>
+                <td><input type="button" value="close" onclick="closeWindow(4)"></td>
+            </tr>
+            <tr>
+                <td>Slack</td>
+                <td><input type="button" value="open" onclick="createNewWindow('https://slack.com/intl/ja-jp/',5)"></td>
+                <td><input type="button" value="close" onclick="closeWindow(5)"></td>
+            </tr>
+        </table>
+    </center>
+  <script type="text/javascript">
+    
+  </script>
+ </body>
+</html>
