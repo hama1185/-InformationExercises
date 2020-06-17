@@ -13,20 +13,35 @@
       dd=dd+7;
       presentDay.setDate(dd);
       extime = presentDay.toGMTString();
-      document.cookie = "name=" + user_name;
-      document.cookie = "hobby=" + user_hobby;
-      document.cookie = "count=" + 1;
-      document.cookie = ";expires=" + extime;
+      setin_cookie("name", user_name);
+      setin_cookie("hobby", user_hobby);
+      setin_cookie("count", 1);
+      
+      document.cookie = "expires=" + extime;
+    }
+
+    function setin_cookie(key, value){
+      var cData = key + "=" + escape(value) +";";
+      document.cookie = cData;
     }
 
     function change_data(){
-      cookie_element = document.cookie.replace("name=","");
-      cookie_element = cookie_element.replace("; hobby="," ");
-      cookie_element = cookie_element.replace("; count="," ");
-      element = cookie_element.split(" ");
-      var user_hobby = prompt("ご趣味に変更はありますか", element[1]);
-      document.cookie = "hobby=" + user_hobby;
-      document.cookie = "count=" + (parseInt(element[2])+1);
+      element = document.cookie.split("; ");
+      var user_hobby = prompt("ご趣味に変更はありますか", search_data("hobby"));
+      setin_cookie("hobby", user_hobby);
+      setin_cookie("count", (parseInt(search_data("count")) + 1));
+    }
+
+    function search_data(key){//keyに対応するvalueを出力する
+      var i;
+      for(i = 0;i < element.length; i++){
+        var index = element[i].indexOf(key);
+        if(index != -1){
+          break;
+        }
+      }
+      var data = element[i].replace(key + "=","");
+      return data;
     }
     
     if(document.cookie == "" || document.cookie == null){
@@ -35,19 +50,16 @@
     else{
       change_data();
     }
-    cookie_element = document.cookie.replace("name=","");
-    cookie_element = cookie_element.replace("; hobby="," ");
-    cookie_element = cookie_element.replace("; count="," ");
-    element = cookie_element.split(" ");
-    
+    element = document.cookie.split("; ");
+
   </script>
  </head>
  <body>
    
   <script type="text/javascript">
-    document.write("　名前:" + element[0]);
-    document.write("　趣味:" + element[1]);
-    document.write("　訪問回数:" + element[2]);
+    document.write("　名前:" + search_data("name"));
+    document.write("　趣味:" + search_data("hobby"));
+    document.write("　訪問回数:" + search_data("count"));
   </script>
  </body>
 </html>
