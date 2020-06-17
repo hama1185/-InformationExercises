@@ -2,41 +2,43 @@
  <head>
   <title>2週目(6)</title>
   <script type="text/javascript">
-    var cookie_element;
-    var element;
+    var element;//cookieの要素を格納するグローバル変数
+    //最初のcookieに入力する関数
     function init_data(){
       var presentDay, dd, extime;
-      var user_name = prompt("お名前を入力してください","");
-      var user_hobby = prompt("ご趣味はなんでしょうか","");
+      var user_name = prompt("お名前を入力してください","");//入力部
+      var user_hobby = prompt("ご趣味はなんでしょうか","");//入力部
       presentDay = new Date( );
       dd = presentDay.getDate( );
       dd=dd+7;
       presentDay.setDate(dd);
-      extime = presentDay.toGMTString();
-      setin_cookie("name", user_name);
-      setin_cookie("hobby", user_hobby);
-      setin_cookie("count", 1);
+      extime = presentDay.toGMTString();//GMT変換
+      setin_cookie("name", user_name);//nameという属性でcookieに格納
+      setin_cookie("hobby", user_hobby);//hobbyという属性でcookieに格納
+      setin_cookie("count", 1);//countという属性でcookieに格納 初めて入ったので値は1
       
-      document.cookie = "expires=" + extime;
+      document.cookie = "expires=" + extime;//期限の代入
     }
 
-    function setin_cookie(key, value){
+    function setin_cookie(key, value){//key(属性)に対するvalue(値)をcookieに格納する関数
+      //ACCII変換してcookieに入力
       var cData = key + "=" + escape(value) +";";
       document.cookie = cData;
     }
 
-    function change_data(){
-      element = document.cookie.split("; ");
-      var user_hobby = prompt("ご趣味に変更はありますか", search_data("hobby"));
-      setin_cookie("hobby", user_hobby);
-      setin_cookie("count", (parseInt(search_data("count")) + 1));
+    function change_data(){//cookieの中身を変更する関数
+      element = document.cookie.split("; ");//文字列を区切って配列とする
+      var user_hobby = prompt("ご趣味に変更はありますか", search_data("hobby"));//入力部
+      setin_cookie("hobby", user_hobby);//格納
+      setin_cookie("count", (parseInt(search_data("count")) + 1));//前回のcountの値に1を足して代入
     }
 
     function search_data(key){//keyに対応するvalueを出力する
+      //elementの中身は(例)count=1 などなのでreplaceで値を取り出す
       var i;
       for(i = 0;i < element.length; i++){
-        var index = element[i].indexOf(key);
-        if(index != -1){
+        var index = element[i].indexOf(key);//失敗したら-1
+        if(index != -1){//成功したら
           break;
         }
       }
@@ -44,22 +46,21 @@
       return data;
     }
     
-    if(document.cookie == "" || document.cookie == null){
+    if(document.cookie == "" || document.cookie == null){//cookieの中身が何もないとき
       init_data();
     }
     else{
       change_data();
     }
-    element = document.cookie.split("; ");
-
+    element = document.cookie.split("; ");//文字列を区切って配列とする
   </script>
  </head>
  <body>
    
   <script type="text/javascript">
-    document.write("　名前:" + search_data("name"));
-    document.write("　趣味:" + search_data("hobby"));
-    document.write("　訪問回数:" + search_data("count"));
+    document.write("　名前:" + search_data("name"));//出力部
+    document.write("　趣味:" + search_data("hobby"));//出力部
+    document.write("　訪問回数:" + search_data("count"));//出力部
   </script>
  </body>
 </html>
