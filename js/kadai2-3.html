@@ -1,0 +1,33 @@
+<html>
+ <head>
+  <title>2週目(3)</title>
+  <!-- <script type="text/javascript">
+    
+  </script> -->
+ </head>
+ <body>
+   <!-- 画像の設定 -->
+    <img src="img1.png" name="myImg" width="640" height="480" style="position: absolute;left: 0px;top: 50px;">
+  <script type="text/javascript">
+    var flag = true;//サイズが半分の状態か元の状態のものか判断するためのグローバル変数で通常の状態がtrue,半分の状態がfalse
+    var task;//グローバル変数でタスクを処理する
+    window.on_load = on_load();//ページの読み込み発生時に処理を実行
+
+    function on_load(){
+        task = setInterval(move_img, 100);//0.1秒に1回move_imgを実行する
+    }
+
+    function task_kill(){
+        clearInterval(task);//宣言したタスクを停止する
+        alert("到達しました");     
+    }
+
+    function move_img(){
+        document.images["myImg"].style.left = parseInt(document.images["myImg"].style.left) + 10;//10pxずつ移動
+        if(parseInt(document.images["myImg"].style.left) == 400){//leftが400pxになったら終了
+            task_kill();//タスクの終了
+        }
+    }
+  </script>
+ </body>
+</html>

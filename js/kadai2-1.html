@@ -1,0 +1,57 @@
+<html>
+ <head>
+  <title>2週目(1)</title>
+  <script type="text/javascript">
+    var flag = false;//グローバル変数で同じ数字かどうかの判定に使用する
+    function maketable(){//表を作成する関数
+    //ここではdocument.writeでHTMLの表の構文を出力することで表を作成している
+        document.write("<center>");
+        document.write("<table border=1>");
+        //第一行の見出しの部分
+        document.write("<tr>");
+        document.write("<th>","8"+"<sup>2</sup>"+"の位","</th>");
+        document.write("<th>","8"+"<sup>1</sup>"+"の位","</th>");
+        document.write("<th>","8"+"<sup>0</sup>"+"の位","</th>");
+        document.write("</tr>");
+        //for文で繰り返すことで行を作成する
+        for(var i = 0 ; i < 50 ; i++){
+            var pow2 = rand_eight();//8^2の桁
+            var pow1 = rand_eight();//8^1の桁
+            var pow0 = rand_eight();//8^0の桁
+            check_triple(pow2, pow1, pow0);//同じ数字かチェック
+            document.write("<tr>");
+            if(flag){
+                document.write("<td><font color=#ff0000>", pow2, "</font></td>");//乱数発生
+                document.write("<td><font color=#ff0000>", pow1, "</font></td>");//乱数発生
+                document.write("<td><font color=#ff0000>", pow0, "</font></td>");//乱数発生
+            }
+            else{
+                document.write("<td>", pow2, "</td>");//乱数発生
+                document.write("<td>", pow1, "</td>");//乱数発生
+                document.write("<td>", pow0, "</td>");//乱数発生
+            }
+            document.write("</tr>");
+            flag = false;
+        }
+        document.write("</table>");
+        document.write("</center>");
+    }
+    function rand_eight(){
+        //randomで0以上1未満の実数を発生させるため8をかけて0以上8未満の実数を発生させる
+        return Math.floor(Math.random() * 8);//floorで与えられた値以下の整数を返す
+    }
+    function check_triple(a,b,c){
+        if(a == b){
+            if(b == c){
+                flag = true;
+            }
+        }
+    }
+  </script>
+ </head>
+ <body>
+  <script type="text/javascript">
+    maketable();//body部分に表の作成を呼び出す
+  </script>
+ </body>
+</html>
