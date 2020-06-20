@@ -2,6 +2,10 @@
  <head>
   <title>2週目(6)</title>
   <script type="text/javascript">
+  //cookieの保存はタブを閉じたら保存はされずリロード時に動作の確認が可能
+  //またタブを閉じずに追加でタブを開いても同様に確認可能
+  //これはFireFoxのcookieの設定であるためタブを閉じて再度タブを開くときは
+  //サーバーなどにデータベースとして保存することも考えられる。
     var element;//cookieの要素を格納するグローバル変数
     //最初のcookieに入力する関数
     function init_data(){
@@ -16,14 +20,18 @@
       setin_cookie("name", user_name);//nameという属性でcookieに格納
       setin_cookie("hobby", user_hobby);//hobbyという属性でcookieに格納
       setin_cookie("count", 1);//countという属性でcookieに格納 初めて入ったので値は1
-      
-      document.cookie = "expires=" + extime;//期限の代入
     }
 
     function setin_cookie(key, value){//key(属性)に対するvalue(値)をcookieに格納する関数
       //ACCII変換してcookieに入力
+      var presentDay, dd, extime;
+      presentDay = new Date( );
+      dd = presentDay.getDate( );
+      dd=dd+7;
+      presentDay.setDate(dd);
+      extime = presentDay.toGMTString();//GMT変換
       var cData = key + "=" + escape(value) +";";
-      document.cookie = cData;
+      document.cookie = cData + "expires="+extime;
     }
 
     function change_data(){//cookieの中身を変更する関数
