@@ -36,7 +36,7 @@
 
     function change_data(){//cookieの中身を変更する関数
       element = document.cookie.split("; ");//文字列を区切って配列とする
-      var user_hobby = prompt("ご趣味に変更はありますか", search_data("hobby"));//入力部
+      var user_hobby = prompt("ご趣味に変更はありますか", unescape(search_data("hobby")));//入力部
       setin_cookie("hobby", user_hobby);//格納
       setin_cookie("count", (parseInt(search_data("count")) + 1));//前回のcountの値に1を足して代入
     }
@@ -66,9 +66,9 @@
  <body>
    
   <script type="text/javascript">
-    document.write("　名前:" + search_data("name"));//出力部
-    document.write("　趣味:" + search_data("hobby"));//出力部
-    document.write("　訪問回数:" + search_data("count"));//出力部
+    document.write("　名前:" + unescape(search_data("name")));//出力部
+    document.write("　趣味:" + unescape(search_data("hobby")));//出力部
+    document.write("　訪問回数:" + unescape(search_data("count")));//出力部
   </script>
  </body>
 </html>
