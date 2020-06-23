@@ -1,0 +1,22 @@
+<html>
+ <head>
+    <title>3週目(3)</title>
+  <script type="text/javascript">
+   function move(){
+    var selected = document.imgmenu.images.selectedIndex;
+    selected = parseInt(selected) + 1;//Indexの範囲は0からのため1をたしてそろえる
+    document.images["myImg"].src = "imgGreece" + selected + ".jpg";
+   }
+  </script>
+ </head>
+ <body>
+  <form name = "imgmenu">
+   <select name ="images" size = "1">
+    <option value = "imgGreece1.jpg" onclick="move()">1
+    <option value = "imgGreece2.jpg" onclick="move()">2
+    <option value = "imgGreece3.jpg" onclick="move()">3
+  </select>
+  <img src="imgGreece1.jpg" name="myImg" width="640" height="480">
+ </form>
+ </body>
+</html>
