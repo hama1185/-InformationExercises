@@ -1,0 +1,25 @@
+<html>
+ <head>
+    <title>3週目(4)</title>
+  <script type="text/javascript">
+   function colorChange(){
+        for (i=0; i<document.colormenu.colors.length; i++){
+            if(document.colormenu.elements[i].checked){
+                document.getElementById("text").style.color = document.colormenu.elements[i].value;
+            }
+        }
+    }
+  </script>
+ </head>
+ <body>
+    <div id = "text">■■■■■</div>
+  <form name = "colormenu">
+   <input type = "radio" name = "colors" value = "red">赤<br>
+   <input type = "radio" name = "colors" value = "blue">青<br>
+   <input type = "radio" name = "colors" value = "yellow">黄<br>
+   <input type = "radio" name = "colors" value = "black">黒<br>
+   <input type = "radio" name = "colors" value = "green">緑<br>
+   <input type = "button" value = "文字色変更" onclick = "colorChange()">
+  </form>
+ </body>
+</html>
