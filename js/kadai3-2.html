@@ -1,7 +1,7 @@
 <html>
  <head>
   <script type="text/javascript">
-    function scrclr () {//初期化
+    function scrclr () {//初期化を行う
         for (i=0; i<document.tstform.length; i++) {
             if (document.tstform.elements[i].type != "button") {
                 document.tstform.elements[i].value = "";
@@ -9,7 +9,7 @@
         }
         document.tstform.english.focus();//英語の入力ホームから入力できるようにする
     }
-    function cave () {
+    function cave (){//判定を行う
         var escore = parseInt(document.tstform.english.value);//英語の点数
         var mscore = parseInt(document.tstform.mathmatics.value);//数学の点数
         if(!isNaN(escore) && !isNaN(mscore)){
@@ -18,6 +18,8 @@
         else{
             document.tstform.tresult.value = "err";
         }
+        decision(escore, "eresult");
+        decision(mscore, "mresult");
         if (document.tstform.tresult.value < 60) {
             document.tstform.tcmnt.value = "頑張らないと単位がとれないですよ";
         } else if (document.tstform.tresult.value < 80) {
@@ -27,6 +29,41 @@
         }else{
             document.tstform.tcmnt.value = "もう一度入力してください";
         }
+    }
+
+    function decision(score, name){//点数とオブジェクトの名前を引数にとる
+        if(name == "eresult"){
+            if (score < 60) {
+                document.tstform.eresult.value = "不可（59点以下）";
+            } else if (score < 70) {
+                document.tstform.eresult.value = "可（60-69点）";
+            } else if (score < 80){
+                document.tstform.eresult.value = "良（70-79点）";
+            } else if (score < 90){
+                document.tstform.eresult.value = "優（80-89点）";
+            } else if (score <= 100){
+                document.tstform.eresult.value = "秀（90点以上）";
+            }
+            else{
+                document.tstform.eresult.value = "もう一度入力してください";
+            }
+        }else if(name == "mresult"){
+            if (score < 60) {
+                document.tstform.mresult.value = "不可（59点以下）";
+            } else if (score < 70) {
+                document.tstform.mresult.value = "可（60-69点）";
+            } else if (score < 80){
+                document.tstform.mresult.value = "良（70-79点）";
+            } else if (score < 90){
+                document.tstform.mresult.value = "優（80-89点）";
+            } else if (score <= 100){
+                document.tstform.mresult.value = "秀（90点以上）";
+            }
+            else{
+                document.tstform.mresult.value = "もう一度入力してください";
+            }
+        }
+        
     }
   </script>
  </head>
@@ -39,8 +76,8 @@
   <input type = "button" onclick = "scrclr ()" value = "キャンセル">
   <p>
    あなたの平均点は，<input type = "text" name = "tresult" size = 3>です．
-   英語の評価:<input type = "text" name = "mresult" size = 15>
-   数学の評価:<input type = "text" name = "eresult" size = 15>
+   英語の評価:<input type = "text" name = "eresult" size = 15>
+   数学の評価:<input type = "text" name = "mresult" size = 15>
   <br>
    コメント：<input type = "text" name = "tcmnt" size = 60><br>
   </form>
