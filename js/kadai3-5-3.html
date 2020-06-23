@@ -1,0 +1,38 @@
+<html>
+ <head>
+  <script type="text/javascript">
+    var i = 0;
+    function change(){
+        if(i == 4){
+            i = 0;
+        }
+        else{
+            i++;
+        }
+        switch(i){
+            case 0:
+                document.body.style.backgroundColor = '#008000';
+                break;
+            case 1:
+                document.body.style.backgroundColor = '#0000ff';
+                break;
+            case 2:
+                document.body.style.backgroundColor = '#ffff00';
+                break;
+            case 3:
+                document.body.style.backgroundColor = '#ff0000';
+                break;
+            case 4:
+                document.body.style.backgroundColor = '#ccffcc';
+                break;
+        }
+    }
+  </script>
+ </head>
+ <body>
+ <input type="button" value="close" onclick="window.close()">
+    <script type="text/javascript">
+        setInterval(change,3000);
+    </script>
+ </body>
+</html>

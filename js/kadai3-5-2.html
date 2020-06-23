@@ -1,0 +1,30 @@
+<html>
+ <head>
+  <script type="text/javascript">
+    var nextYear = Date.parse(2021/1/1);
+    function outputDate(){
+        setTimeout(location.reload(),1000);
+        var now = Date.now();
+        var diff = nextYear - now - 9 * 3600000;//時差の分の計算
+        var spaceDay = diff / 86400000;
+        var spaceHour = ((diff % 86400000) / 3600000);
+        var spaceSecond = ((diff % 86400000) % 3600000) / 1000;
+        document.timemenu.day.value = parseInt(spaceDay);
+        document.timemenu.hour.value = parseInt(spaceHour);
+        document.timemenu.second.value = parseInt(spaceSecond);
+    }
+  </script>
+ </head>
+ <body>
+  <form name = "timemenu">
+    残り<input type="text" name = "day" size = 3>日
+    <input type="text" name = "hour" size = 2>時間
+    <input type="text" name = "second" size = 3>秒
+ </form>
+ <input type="button" value="close" onclick="window.close()">
+ 
+ <script type="text/javascript">
+    outputDate();
+ </script>
+ </body>
+</html>

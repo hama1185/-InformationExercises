@@ -1,0 +1,22 @@
+<html>
+ <head>
+  <script type="text/javascript">
+   function wopen(){
+    var selected = document.bkmkmenu.bkmks.selectedIndex;
+    window.open(document.bkmkmenu.bkmks.options[selected].value,"new","width=400, height=600");
+   }
+  </script>
+ </head>
+ <body>
+  <form name = "bkmkmenu">
+   <select name ="bkmks" size = "5">
+    <option value = "http://www.uec.ac.jp" onclick="wopen()">電通大ホームページ
+    <option value = "https://www.ichinoseki.ac.jp/" onclick="wopen()">一関高専ホームページ
+    <option value = "https://github.com/hama1185" onclick="wopen()">GitHub
+    <option value = "https://qiita.com/hama1185" onclick="wopen()">Qiita
+    <option value = "https://slack.com/intl/ja-jp/" onclick="wopen()">Slack
+  </select>
+ </form>
+ <input type="button" value="close" onclick="window.close()">
+ </body>
+</html>
