@@ -2,13 +2,21 @@
  <head>
     <title>3週目(1)</title>
   <script language="JavaScript">
-  
+      var uri = "https://www.ied.inf.uec.ac.jp/support/projects/ied-support/wiki";
+      function passMatch(){
+            if(document.inputinform.id.value == document.inputinform.pass.value){
+                  window.open(uri,"ied","width=400, height=600");
+            }
+            else{
+                  alert("「Password incorrect」");
+            }
+      }
   </script>
  </head>
  <body>
   <form name = "inputinform">
-        Input ID:<input type="text" name = "tx" size = "10">
-        Input password: <input type = "password" size="15">
+        Input ID:<input type="text" name = "id" size = 10>
+        Input password: <input type = "password" name = "pass" size= 15 onchange="passMatch()">
   </form>
  </body>
 </html>
