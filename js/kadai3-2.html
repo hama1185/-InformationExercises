@@ -13,14 +13,14 @@
     function cave (){//判定を行う
         var escore = parseInt(document.tstform.english.value);//英語の点数
         var mscore = parseInt(document.tstform.mathmatics.value);//数学の点数
-        if(!isNaN(escore) && !isNaN(mscore)){
+        if(!isNaN(escore) && !isNaN(mscore)){//数字以外の入力されているかの判定
             document.tstform.tresult.value = (escore + mscore)/2;
         }
         else{
             document.tstform.tresult.value = "err";
         }
-        decision(escore, "eresult");
-        decision(mscore, "mresult");
+        decision(escore, "eresult");//判定の関数
+        decision(mscore, "mresult");//判定の関数
         if (document.tstform.tresult.value < 60) {
             document.tstform.tcmnt.value = "頑張らないと単位がとれないですよ";
         } else if (document.tstform.tresult.value < 80) {
@@ -28,7 +28,7 @@
         } else if (document.tstform.tresult.value <= 100){
             document.tstform.tcmnt.value = "よくできました";
         }else{
-            document.tstform.tcmnt.value = "もう一度入力してください";
+            document.tstform.tcmnt.value = "もう一度入力してください";//エラーだった時
         }
     }
 

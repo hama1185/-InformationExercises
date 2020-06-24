@@ -1,19 +1,19 @@
 <html>
  <head>
   <script type="text/javascript">
-    var nextYear = Date.parse(2021/1/1);
+    var nextYear = Date.parse(2021/1/1);//来年の1月1日
     function outputDate(){
-        setTimeout(location.reload(),1000);
-        var now = Date.now();
+        setTimeout(location.reload(),1000);//1秒毎に更新
+        var now = Date.now();//今日の時間を取得
         var diff = nextYear - now - 9 * 3600000;//時差の分の計算
-        var spaceDay = diff / 86400000;
-        var spaceHour = ((diff % 86400000) / 3600000);
-        var spaceMinutes = ((diff % 86400000) % 3600000) / 60000; 
-        var spaceSecond = (((diff % 86400000) % 3600000) % 60000) / 1000;
-        document.timemenu.day.value = parseInt(spaceDay);
-        document.timemenu.hour.value = parseInt(spaceHour);
-        document.timemenu.minutes.value = parseInt(spaceMinutes);
-        document.timemenu.second.value = parseInt(spaceSecond);
+        var spaceDay = diff / 86400000;//残りの日付
+        var spaceHour = ((diff % 86400000) / 3600000);//日付で割った余りの分を時間に直す
+        var spaceMinutes = ((diff % 86400000) % 3600000) / 60000;//時間で割った余りの分を分に直す
+        var spaceSecond = (((diff % 86400000) % 3600000) % 60000) / 1000;//分で割った余りの分を秒に直す
+        document.timemenu.day.value = parseInt(spaceDay);//代入
+        document.timemenu.hour.value = parseInt(spaceHour);//代入
+        document.timemenu.minutes.value = parseInt(spaceMinutes);//代入
+        document.timemenu.second.value = parseInt(spaceSecond);//代入
     }
   </script>
  </head>
