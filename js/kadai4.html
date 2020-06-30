@@ -2,17 +2,16 @@
  <head>
     <title>4週目</title>
   <script type="text/javascript">
-    var gameCount = 20;
-    var stButton;
-    function update(){
-        gameCount--;
-        document.getElementById("st").value = gameCount;
+    var gameCount = 20;//チャレンジ回数
+    function update(){//1フレーム(1秒)毎に処理する関数
+        gameCount--;//チャレンジ回数を減少
+        document.getElementById("st").value = gameCount;//startボタンに出力
     }
 
     function clickStartButton(){
-        gameCount = 20;
-        document.getElementById("st").value = 20;
-        setInterval(update, 1000);
+        gameCount = 20;//20に初期化
+        document.getElementById("st").value = 20;//startボタンに代入
+        setInterval(update, 1000);//1秒ごとにupdateを実行する
     }
   </script>
  </head>
