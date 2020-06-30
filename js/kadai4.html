@@ -33,10 +33,12 @@
         document.getElementById("st").value = gameCount;//startボタンに出力
         if(gameCount == 0){
             clearInterval(task);//処理の終了
-            startbuttonFlag = false;
+            startbuttonFlag = false;//スタートボタン許容
+            gswflag = true;//gswの入力を許容しない
         }
         else{
             dividRand();//乱数をボタンに表示
+            gswflag = false;//gswの入力を許容する
             gameCount--;//チャレンジ回数を減少
         }
     }
@@ -55,14 +57,19 @@
 
     function gSwitch(num){//5つのボタンのどれかが押された時の処理
         num = num - 1;
-        var max = maxValue();//5つのボタンの中の最大値を代入
-        if(document.g_switch.elements[num].value == max){
-            sum += parseInt(document.g_switch.elements[num].value);//最大値だった時加算
+        if(!gswflag){
+            var max = maxValue();//5つのボタンの中の最大値を代入
+            if(document.g_switch.elements[num].value == max){
+                sum += parseInt(document.g_switch.elements[num].value);//最大値だった時加算
+            }
+            else{
+                sum -= parseInt(document.g_switch.elements[num].value);//最大値じゃなかったとき減算
+            }
+            document.result.total.value = sum;//計算後のスコアの代入
+            gswflag = true;
         }
         else{
-            sum -= parseInt(document.g_switch.elements[num].value);//最大値じゃなかったとき減算
         }
-        document.result.total.value = sum;//計算後のスコアの代入
     }
   </script>
  </head>
