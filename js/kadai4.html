@@ -36,12 +36,25 @@
         }
     }
 
+    function visibleButton(){//入力ボタンの表示
+        for(var i = 0;i < 5;i++){
+            document.g_switch.elements[i].style.visibility = "visible";
+        }
+    }
+
+    function invisibleButton(){//入力ボタンの非表示
+        for(var i = 0;i < 5;i++){
+            document.g_switch.elements[i].style.visibility = "hidden";
+        }
+    }
+
     function update(){//1フレーム(1秒)毎に処理する関数
         document.getElementById("st").value = gameCount;//startボタンに出力
         if(gameCount == 0){
             clearInterval(task);//処理の終了
             startbuttonFlag = false;//スタートボタン許容
             gswflag = true;//gswの入力を許容しない
+            invisibleButton();//ボタンの非表示
         }
         else{
             dividRand();//乱数をボタンに表示
@@ -53,6 +66,7 @@
     function clickStartButton(){//スタートボタンを押したときの処理
         if(!startbuttonFlag){
             Initialization();//変数の初期化
+            visibleButton();//表示(2回目以降のための処理)
             document.result.total.value = sum;//初期化されたスコアの代入
             task = setInterval(update, 1000);//1秒ごとにupdateを実行する
             startbuttonFlag = true;
@@ -97,7 +111,6 @@
         スコア：<input type = "text" name = "total" size = 4>点
     </form>
     <script type="text/javascript">
-        
     </script>
  </body>
 </html>
