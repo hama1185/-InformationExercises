@@ -2,27 +2,53 @@
  <head>
     <title>4週目</title>
   <script type="text/javascript">
+    var startbuttonFlag = false;//ゲーム中にスタートボタンを押された時の想定
     var gameCount = 20;//チャレンジ回数
-    function update(){//1フレーム(1秒)毎に処理する関数
-        gameCount--;//チャレンジ回数を減少
-        document.getElementById("st").value = gameCount;//startボタンに出力
+    var task;//処理を格納する変数
+    //flag使ってチャタリングを防ぐ 有効回数が一回
+    function randGenerate(min, max){//minとmaxの間の整数をランダムで生成する関数
+        return Math.floor(Math.random() * (max + 1 - min)) + min;
     }
 
-    function clickStartButton(){
-        gameCount = 20;//20に初期化
-        document.getElementById("st").value = 20;//startボタンに代入
-        setInterval(update, 1000);//1秒ごとにupdateを実行する
+    function dividRand(){//乱数の割り当てを行う
+        for(var i = 0;i < 5;i++){
+            document.g_switch.elements[i].value = randGenerate(1,100);
+        }
+    }
+
+    function update(){//1フレーム(1秒)毎に処理する関数
+        
+        document.getElementById("st").value = gameCount;//startボタンに出力
+        if(gameCount == 0){
+            clearInterval(task);//処理の終了
+            startbuttonFlag = false;
+        }
+        else{
+            dividRand();//乱数をボタンに表示
+            gameCount--;//チャレンジ回数を減少
+        }
+    }
+
+    function clickStartButton(){//スタートボタンを押したときの処理
+        if(!startbuttonFlag){
+            gameCount = 20;//20に初期化
+            task = setInterval(update, 1000);//1秒ごとにupdateを実行する
+            startbuttonFlag = true;
+        }
+        else{
+
+        }
     }
   </script>
  </head>
  <body>
-    <input type="button" id="st" value="start" style="widht:50px; height: 50px; font-size:20px;position: relative;left: 131px; top: 0px" onclick="clickStartButton()">
+    <input type="button" id="st" value="start" style="width:50px; height: 50px; font-size:20px;position: relative;left: 110px; top: 0px" onclick="clickStartButton()">
     <form name="g_switch">
-        <input type="button" name="gs_1" value="SW1" style="widht:50px; height: 50px; font-size:20px;">
-        <input type="button" name="gs_2" value="SW2" style="widht:50px; height: 50px; font-size:20px;">
-        <input type="button" name="gs_3" value="SW3" style="widht:50px; height: 50px; font-size:20px;">
-        <input type="button" name="gs_4" value="SW4" style="widht:50px; height: 50px; font-size:20px;">
-        <input type="button" name="gs_5" value="SW5" style="widht:50px; height: 50px; font-size:20px;">
+        <input type="button" name="gs_1" value="SW1" style="width:50px; height: 50px; font-size:20px;">
+        <input type="button" name="gs_2" value="SW2" style="width:50px; height: 50px; font-size:20px;">
+        <input type="button" name="gs_3" value="SW3" style="width:50px; height: 50px; font-size:20px;">
+        <input type="button" name="gs_4" value="SW4" style="width:50px; height: 50px; font-size:20px;">
+        <input type="button" name="gs_5" value="SW5" style="width:50px; height: 50px; font-size:20px;">
     </form>
     <script type="text/javascript">
         
