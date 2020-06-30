@@ -7,6 +7,13 @@
     var gameCount = 20;//チャレンジ回数
     var task;//処理を格納する変数
     var sum = 0;//合計スコア
+    var sameCount = 0;//正しくカウントした回数
+
+    function Initialization(){//変数の初期化を行う関数
+        gameCount = 20;//20に初期化
+        sum = 0;//0に初期化
+        sameCount = 0//0に初期化
+    }
 
     function maxValue(){//ボタンの乱数の中で最大値を探索する関数
         //最大値が複数あることを考慮すると添え字は適切ではない
@@ -45,8 +52,7 @@
 
     function clickStartButton(){//スタートボタンを押したときの処理
         if(!startbuttonFlag){
-            gameCount = 20;//20に初期化
-            sum = 0;//0に初期化
+            Initialization();//変数の初期化
             document.result.total.value = sum;//初期化されたスコアの代入
             task = setInterval(update, 1000);//1秒ごとにupdateを実行する
             startbuttonFlag = true;
@@ -61,6 +67,7 @@
             var max = maxValue();//5つのボタンの中の最大値を代入
             if(document.g_switch.elements[num].value == max){
                 sum += parseInt(document.g_switch.elements[num].value);//最大値だった時加算
+                sameCount++;//カウントアップ
             }
             else{
                 sum -= parseInt(document.g_switch.elements[num].value);//最大値じゃなかったとき減算
@@ -83,7 +90,10 @@
         <input type="button" name="gs_5" value="SW5" onclick="gSwitch(5)" style="width:60px; height: 50px; font-size:20px;">
     </form>
 
+
+    <!-- スコアは右の方がよさげ -->
     <form name="result">
+        <hr width="200">
         スコア：<input type = "text" name = "total" size = 4>点
     </form>
     <script type="text/javascript">
