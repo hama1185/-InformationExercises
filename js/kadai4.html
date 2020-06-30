@@ -1,29 +1,18 @@
 <html>
  <head>
-  <title>1週目(4)</title>
-  <!-- <script type="text/javascript">
-    
-  </script> -->
+    <title>4週目</title>
+  <script type="text/javascript">
+   
+  </script>
  </head>
  <body>
-   <!-- 画像のサイズ指定およびクリックしたときに関数の呼び出しを行う -->
-    <img src="img1.png" name="myImg1" width="640" height="480" onclick="change_size()">
-  <script type="text/javascript">
-
-    var flag = true;//サイズが半分の状態か元の状態のものか判断するためのグローバル変数で通常の状態がtrue,半分の状態がfalse
-    function change_size(){//クリック時に呼び出される関数
-        if(flag){
-          //画像サイズを縮小
-            document.images["myImg1"].width /= 2;
-            document.images["myImg1"].height /= 2;
-        }
-        else{
-          //画像サイズの拡大
-            document.images["myImg1"].width *= 2;
-            document.images["myImg1"].height *= 2;
-        }
-        flag = !flag;//画像のサイズの状態を示すflagの反転
-    }
-  </script>
+    <input type="button" name="st" value="start" style="widht:50px; height: 50px; font-size:20px;position: relative;left: 131px; top: 0px">
+    <form name="g_switch">
+        <input type="button" name="gs_1" value="SW1" style="widht:50px; height: 50px; font-size:20px;">
+        <input type="button" name="gs_2" value="SW2" style="widht:50px; height: 50px; font-size:20px;">
+        <input type="button" name="gs_3" value="SW3" style="widht:50px; height: 50px; font-size:20px;">
+        <input type="button" name="gs_4" value="SW4" style="widht:50px; height: 50px; font-size:20px;">
+        <input type="button" name="gs_5" value="SW5" style="widht:50px; height: 50px; font-size:20px;">
+    </form>
  </body>
 </html>
