@@ -2,17 +2,116 @@
  <head>
     <title>4週目</title>
   <script type="text/javascript">
-   
+    var startbuttonFlag = false;//ゲーム中にスタートボタンを押された時の想定
+    var gswflag = false;//1秒間に1回しか押せない制限のためのボタン
+    var gameCount = 20;//チャレンジ回数
+    var task;//処理を格納する変数
+    var sum = 0;//合計スコア
+    var sameCount = 0;//正しくカウントした回数
+
+    function Initialization(){//変数の初期化を行う関数
+        gameCount = 20;//20に初期化
+        sum = 0;//0に初期化
+        sameCount = 0//0に初期化
+    }
+
+    function maxValue(){//ボタンの乱数の中で最大値を探索する関数
+        //最大値が複数あることを考慮すると添え字は適切ではない
+        var max = parseInt(document.g_switch.elements[0].value);//int型にする
+        for(var i = 1;i < 5;i++){
+            if(parseInt(document.g_switch.elements[i].value) > max){
+                max = parseInt(document.g_switch.elements[i].value);//最大値の入れ替え
+            }
+        }
+        return max;//最大値を返す
+    }
+
+    function randGenerate(min, max){//minとmaxの間の整数をランダムで生成する関数
+        return Math.floor(Math.random() * (max + 1 - min)) + min;
+    }
+
+    function dividRand(){//乱数の割り当てを行う
+        for(var i = 0;i < 5;i++){
+            document.g_switch.elements[i].value = randGenerate(1,100);
+        }
+    }
+
+    function visibleButton(){//入力ボタンの表示
+        for(var i = 0;i < 5;i++){
+            document.g_switch.elements[i].style.visibility = "visible";
+        }
+    }
+
+    function invisibleButton(){//入力ボタンの非表示
+        for(var i = 0;i < 5;i++){
+            document.g_switch.elements[i].style.visibility = "hidden";
+        }
+    }
+
+    function update(){//1フレーム(1秒)毎に処理する関数
+        document.getElementById("st").value = gameCount;//startボタンに出力
+        if(gameCount == 0){
+            clearInterval(task);//処理の終了
+            startbuttonFlag = false;//スタートボタン許容
+            gswflag = true;//gswの入力を許容しない
+            invisibleButton();//ボタンの非表示
+        }
+        else{
+            dividRand();//乱数をボタンに表示
+            gswflag = false;//gswの入力を許容する
+            gameCount--;//チャレンジ回数を減少
+        }
+    }
+
+    function clickStartButton(){//スタートボタンを押したときの処理
+        if(!startbuttonFlag){
+            Initialization();//変数の初期化
+            visibleButton();//表示(2回目以降のための処理)
+            document.result.total.value = sum;//初期化されたスコアの代入
+            task = setInterval(update, 1000);//1秒ごとにupdateを実行する
+            startbuttonFlag = true;
+        }
+        else{
+        }
+    }
+
+    function gSwitch(num){//5つのボタンのどれかが押された時の処理
+        num = num - 1;
+        if(!gswflag){
+            var max = maxValue();//5つのボタンの中の最大値を代入
+            if(document.g_switch.elements[num].value == max){
+                sum += parseInt(document.g_switch.elements[num].value);//最大値だった時加算
+                sameCount++;//カウントアップ
+            }
+            else{
+                sum -= parseInt(document.g_switch.elements[num].value);//最大値じゃなかったとき減算
+            }
+            document.result.score.value = sum;//計算後のスコアの代入
+            document.result.bar.value = sameCount;//スライダーに正しくタップした数を代入
+            document.result.check.value = sameCount;//正しくタップした数を代入
+            gswflag = true;
+        }
+        else{
+        }
+    }
   </script>
  </head>
  <body>
-    <input type="button" name="st" value="start" style="widht:50px; height: 50px; font-size:20px;position: relative;left: 131px; top: 0px">
+    <input type="button" id="st" value="start" style="width:60px; height: 50px; font-size:20px;position: relative;left: 132.5px; top: 0px" onclick="clickStartButton()">
     <form name="g_switch">
-        <input type="button" name="gs_1" value="SW1" style="widht:50px; height: 50px; font-size:20px;">
-        <input type="button" name="gs_2" value="SW2" style="widht:50px; height: 50px; font-size:20px;">
-        <input type="button" name="gs_3" value="SW3" style="widht:50px; height: 50px; font-size:20px;">
-        <input type="button" name="gs_4" value="SW4" style="widht:50px; height: 50px; font-size:20px;">
-        <input type="button" name="gs_5" value="SW5" style="widht:50px; height: 50px; font-size:20px;">
+        <input type="button" name="gs_1" value="SW1" onclick="gSwitch(1)" style="width:60px; height: 50px; font-size:20px;">
+        <input type="button" name="gs_2" value="SW2" onclick="gSwitch(2)" style="width:60px; height: 50px; font-size:20px;">
+        <input type="button" name="gs_3" value="SW3" onclick="gSwitch(3)" style="width:60px; height: 50px; font-size:20px;">
+        <input type="button" name="gs_4" value="SW4" onclick="gSwitch(4)" style="width:60px; height: 50px; font-size:20px;">
+        <input type="button" name="gs_5" value="SW5" onclick="gSwitch(5)" style="width:60px; height: 50px; font-size:20px;">
     </form>
+
+    <form name="result">
+        <input type="range" name="bar" value="0" min="0" max="20" step="1">
+        <output name="check">0</output><br>
+        スコア：<output id="total" name="score">0</output>点
+    </form>
+    <script type="text/javascript">
+    </script>
  </body>
 </html>

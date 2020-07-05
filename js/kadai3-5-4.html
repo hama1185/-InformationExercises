@@ -1,0 +1,27 @@
+<html>
+ <head>
+  <script type="text/javascript">
+    var i = 0;//クリックされた回数
+    function count(){
+        //呼び出される度にグローバル変数を加算
+        i++;//インクリメント
+        document.result.bar.value = i;//スライダーにクリック回数を代入
+        document.result.check.value = i * 10;//パーセンテージで判断しているため10をかけて代入
+        if(i >= 10){
+            alert("100%!!画面を終了します.");//警告
+            window.close();//画面を閉じる
+        }
+    }
+  </script>
+ </head>
+ <body>
+    here!と書かれているボタンを押すたびにバーが変化しバーが100%になったらページを閉じます.
+    <form name="result">
+        <input type="button" name="countButton" value="here!" onclick="count()">
+        <input type="range" name="bar" value="0" min="0" max="10" step="1">
+        <output name="check">0</output>%<br>
+    </form>
+    <input type="button" value="close" onclick="window.close()">
+
+ </body>
+</html>
