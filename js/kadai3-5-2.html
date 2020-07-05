@@ -2,8 +2,11 @@
  <head>
   <script type="text/javascript">
     var nextYear = Date.parse(2021/1/1);//来年の1月1日
-    function outputDate(){
-        setTimeout(location.reload(),1000);//1秒毎に更新
+    var task;//インターバル処理を格納する変数
+    function start(){
+      task = setInterval(outputDate, 1000);//outputDataを1秒ごとに行う
+    }
+    function outputDate(){//残りの時間を計算してテキストの変更を行う関数
         var now = Date.now();//今日の時間を取得
         var diff = nextYear - now - 9 * 3600000;//時差の分の計算
         var spaceDay = diff / 86400000;//残りの日付
@@ -14,6 +17,7 @@
         document.timemenu.hour.value = parseInt(spaceHour);//代入
         document.timemenu.minutes.value = parseInt(spaceMinutes);//代入
         document.timemenu.second.value = parseInt(spaceSecond);//代入
+        // clearInterval(task);//
     }
   </script>
  </head>
@@ -27,7 +31,8 @@
  <input type="button" value="close" onclick="window.close()">
  
  <script type="text/javascript">
-    outputDate();
+    outputDate();//表示
+    start();//インターバルの開始
  </script>
  </body>
 </html>
