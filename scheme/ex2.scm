@@ -5,8 +5,8 @@
 (define get-depth
   (lambda (tree n)
     (if (> n 0)
-      (map (lambda (t) (get-depth t (- n 1))) (cdr tree))
-      (car tree)
+      (apply append (map (lambda (t) (get-depth t (- n 1))) (cdr tree)))
+      (list(car tree))
     )
   )
 )
