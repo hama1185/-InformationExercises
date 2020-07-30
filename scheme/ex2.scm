@@ -30,3 +30,25 @@
     (get-depth tree (search tree key 0))
   )
 )
+
+(define search-root
+  (lambda (tree key bname)
+    (if (equal? (car tree) key)
+      bname
+      (if (null? (cdr tree))
+        '()
+        (apply append (map (lambda (t) (search-root t key bname)) (cdr tree)))
+      )
+    )
+  )
+)
+
+(define get-path
+  (lambda (tree key)
+    (search-root tree key (car tree))
+    ; (if (null? (cdr tree))
+    ;     '()
+    ;     (apply append (map (lambda (t) (get-path t key)) (cdr tree)))
+    ; )
+  )
+)
