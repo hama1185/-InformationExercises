@@ -16,18 +16,17 @@
 (define search
   (lambda (tree key n)
     (if (equal? (car tree) key)
-      (n)
-      (0)
+      '(n)
+      (if (null? (cdr tree))
+        '(0)
+        (apply append (map (lambda (t) (search t key (+ n 1))) (cdr tree)))
+      )
     )
   )
 )
 
 (define get-cousin
   (lambda (tree key)
-    (if (null? (cdr tree))
-      
-      (list(car tree))
-      (map (lambda (t) (search t key (+ n 1))) (cdr tree))
-    )
+    (search tree key 0)
   )
 )
