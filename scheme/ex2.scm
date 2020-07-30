@@ -19,7 +19,7 @@
       n
       (if (null? (cdr tree))
         0
-        (cons 0 (map (lambda (t) (search t key (+ n 1))) (cdr tree)))
+        (apply + (cons 0 (map (lambda (t) (search t key (+ n 1))) (cdr tree))))
       )
     )
   )
@@ -27,6 +27,6 @@
 
 (define get-cousin
   (lambda (tree key)
-    (search tree key 0)
+    (get-depth tree (search tree key 0))
   )
 )
