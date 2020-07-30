@@ -1,0 +1,5 @@
+(define alphabet
+  (read (open-input-file "./w2/alphabet")))
+(define tokugawa
+  (read (open-input-file "./w2/tokugawa")))
+(define get-depth)
