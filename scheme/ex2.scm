@@ -16,10 +16,10 @@
 (define search
   (lambda (tree key n)
     (if (equal? (car tree) key)
-      '(n)
+      n
       (if (null? (cdr tree))
-        '(0)
-        (apply append (map (lambda (t) (search t key (+ n 1))) (cdr tree)))
+        0
+        (cons 0 (map (lambda (t) (search t key (+ n 1))) (cdr tree)))
       )
     )
   )
