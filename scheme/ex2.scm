@@ -48,7 +48,9 @@
     (search-root tree key (car tree))
     ; (if (null? (cdr tree))
     ;     '()
-    ;     (apply append (map (lambda (t) (get-path t key)) (cdr tree)))
+    ;     '()
+    ;     ; (apply append (map (lambda (t) (get-path t key)) (cdr tree)))
+    ;     ; letの式
     ; )
   )
 )
