@@ -55,7 +55,7 @@
 (define simple-
     (lambda (lst)
         (cond   ((null? (non-zero-list (cdr lst))) (car (map simple lst)))
-                (else `(,(list '-  (car (map simple lst)) (non-zero-list (map simple (cdr lst))))))
+                (else (cons '-  (cons (car (map simple lst)) (non-zero-list (map simple (cdr lst))))))
         ) 
     )
 )
