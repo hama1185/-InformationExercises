@@ -63,5 +63,5 @@
 
 (Eratosthenes 3)
 (Eratosthenes 10)
-(Eratosthenes 3000)
+(Eratosthenes 20)
 

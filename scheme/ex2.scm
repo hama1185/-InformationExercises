@@ -1,8 +1,8 @@
 (define alphabet
-  (read (open-input-file "./w2/alphabet")))
+  (read (open-input-file "/class/scheme/alphabet")))
 
 (define tokugawa
-  (read (open-input-file "./w2/tokugawa")))
+  (read (open-input-file "/class/scheme/tokugawa")))
 
 (define get-depth
   (lambda (tree n)
@@ -12,6 +12,11 @@
     )
   )
 )
+(get-depth alphabet 1)
+(get-depth alphabet 3)
+(get-depth tokugawa 1)
+(get-depth tokugawa 3)
+(get-depth tokugawa 6)
 
 (define search
   (lambda (tree key n)
@@ -30,18 +35,12 @@
     (get-depth tree (search tree key 0))
   )
 )
-; 渡された部分木に探している葉があったとき木の先頭を返す
-(define search-root
-  (lambda (tree key bname)
-    (if (equal? (car tree) key)
-      (list bname)
-      (if (null? (cdr tree))
-        '()
-        (apply append (map (lambda (t) (search-root t key bname)) (cdr tree)))
-      )
-    )
-  )
-)
+
+(get-cousin alphabet 'b3)
+(get-cousin alphabet 'e1)
+(get-cousin tokugawa '秀忠)
+(get-cousin tokugawa '吉宗)
+(get-cousin tokugawa '家継)
 
 (define get-path
   (lambda (tree key)
@@ -63,3 +62,9 @@
     )
   )
 )
+
+(get-path alphabet 'c9)
+(get-path alphabet 'e3)
+(get-path tokugawa '家光)
+(get-path tokugawa '家治)
+(get-path tokugawa '家慶)

@@ -11,6 +11,12 @@
     )
 )
 
+(diff 'x)
+(diff '(+ x 5))
+(diff '(+ (** x 3) (* 2 x) 4))
+(diff '(** (* x 3) 2))
+(diff '(* (+ x 2) (- (** x 2) x)))
+
 (define tangent 
     (lambda (form a) 
         (let (
@@ -21,6 +27,8 @@
         )
     )
 )
+
+(tangent '(+ (** x 3) (* -2 (** x 2)) 9) 2)
 
 (define diff2
     (lambda (form val)
@@ -34,6 +42,12 @@
         )
     )
 )
+
+(diff2 'x 'x)
+(diff2 'y 'x)
+(diff2 '(+ y z) 'z)
+(diff2 '(* x y) 'x)
+
 (define non-zero-list
     (lambda (lst)
         (cond   ((null? lst) '())
