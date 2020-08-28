@@ -38,17 +38,17 @@
     )
 )
 
-(define screen
+(define filter
     (lambda (num L)
-        (if (= (modulo (stream-car L) num) 0) (screen num (stream-cdr L))
-            (stream-cons (stream-car L) (screen num (stream-cdr L))) ;else(割り切れない時)
+        (if (= (modulo (stream-car L) num) 0) (filter num (stream-cdr L))
+            (stream-cons (stream-car L) (filter num (stream-cdr L)))
         )
     )
 )
 
-(define EraList
+(define era-list
     (lambda (L)
-        (stream-cons (stream-car L) (EraList(screen (stream-car L) (stream-cdr L))))
+        (stream-cons (stream-car L) (era-list(filter (stream-car L) (stream-cdr L))))
     )
 )
 
@@ -56,7 +56,7 @@
     (lambda (N)
         (cond   ((= N 0) '())
                 ((= N 1) '(2))
-                (else (head N (EraList(numbers))))
+                (else (head N (era-list(numbers))))
         )
     )
 )
