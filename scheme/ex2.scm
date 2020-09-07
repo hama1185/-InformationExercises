@@ -12,7 +12,11 @@
     )
   )
 )
-
+(get-depth alphabet 0)
+(get-depth alphabet 2)
+(get-depth tokugawa 0)
+(get-depth tokugawa 3)
+(get-depth tokugawa 8)
 (define search
   (lambda (tree key n)
     (if (equal? (car tree) key)
@@ -30,6 +34,11 @@
     (get-depth tree (search tree key 0))
   )
 )
+(get-cousin alphabet 'b3)
+(get-cousin alphabet 'e1)
+(get-cousin tokugawa '秀忠)
+(get-cousin tokugawa '吉宗)
+(get-cousin tokugawa '家継)
 ; 渡された部分木に探している葉があったとき木の先頭を返す
 (define search-root
   (lambda (tree key bname)
@@ -63,3 +72,8 @@
     )
   )
 )
+(get-path alphabet 'c9)
+(get-path alphabet 'e3)
+(get-path tokugawa '家光)
+(get-path tokugawa '家治)
+(get-path tokugawa '家慶)
